@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://vitejs.dev/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LojaOutside: Importador</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+
+      /* Print Styles */
+      @media print {
+        @page {
+          margin: 1.5cm;
+          size: auto;
+        }
+
+        body {
+          background-color: white;
+          color: black;
+        }
+
+        /* Utility classes for print control */
+        .no-print {
+          display: none !important;
+        }
+
+        .only-print {
+          display: block !important;
+        }
+
+        /* Layout overrides */
+        .print-container {
+          width: 100% !important;
+          max-width: none !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+        /* Table Styling */
+        table {
+          width: 100% !important;
+          border-collapse: collapse !important;
+          font-size: 12pt;
+        }
+
+        thead tr {
+          background-color: #f3f4f6 !important; /* gray-100 */
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        th, td {
+          border: 1px solid #000 !important;
+          padding: 8px !important;
+          text-align: left;
+        }
+
+        /* Quantity Input Styling for Print */
+        input[type="number"] {
+          border: none !important;
+          background: transparent !important;
+          box-shadow: none !important;
+          padding: 0 !important;
+          font-weight: bold;
+          color: black !important;
+          /* Hide spinners in print if possible, though browser dependent */
+          -moz-appearance: textfield;
+        }
+        
+        /* Typography */
+        h1, h2, h3 {
+          page-break-after: avoid;
+          color: black !important;
+        }
+      }
+
+      /* Hide print-only elements on screen */
+      .only-print {
+        display: none;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "@google/genai": "https://esm.sh/@google/genai@^1.37.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

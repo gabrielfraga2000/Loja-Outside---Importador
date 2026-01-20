@@ -1,0 +1,5 @@
+{
+  "name": "LojaOutside: Importador",
+  "description": "A tool to extract structured JSON product data from raw HTML of lojaoutside.com.br using Gemini API.",
+  "requestFramePermissions": []
+}
