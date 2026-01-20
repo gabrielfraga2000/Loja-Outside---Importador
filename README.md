@@ -2,57 +2,48 @@
 
 O **LojaOutside Parser** é uma ferramenta web desenvolvida para automatizar a criação de pedidos de compra a partir de URLs do site `lojaoutside.com.br`.
 
-A aplicação utiliza a **Google Gemini API** (modelo `gemini-3-flash-preview`) para analisar o código HTML da página do produto e extrair informações estruturadas, eliminando a necessidade de cadastro manual de referências e variações.
+A aplicação utiliza a **Google Gemini API** (modelo `gemini-3-flash-preview`) para analisar o código HTML da página do produto e extrair informações estruturadas.
 
-## Funcionalidades Principais
-
-*   **Importação via URL**: Basta colar o link do produto. O sistema utiliza um proxy para baixar o HTML e processá-lo.
-*   **Extração Inteligente (IA)**:
-    *   Identifica o Nome do Produto e Imagem Principal.
-    *   Captura a Referência Pai (SKU).
-    *   Lista todas as Variações de Tamanho.
-    *   Identifica o SKU específico de cada variação.
-    *   Verifica o Estoque disponível.
-*   **Gestão de Pedido**:
-    *   Adicionar múltiplos produtos a uma única lista.
-    *   Inserir quantidades manualmente para cada variação.
-    *   Cálculo automático do total de peças.
-*   **Modo de Impressão**:
-    *   Interface limpa otimizada para papel A4.
-    *   Remove botões e menus.
-    *   Adiciona cabeçalho com Logo da empresa.
-    *   Campos de quantidade formatados para conferência.
-
-## Tecnologias Utilizadas
+## Tecnologias
 
 *   **Frontend**: React (Vite), TypeScript.
-*   **Estilização**: Tailwind CSS.
-*   **IA**: SDK `@google/genai` (Gemini 1.5 Pro/Flash).
-*   **Proxy**: `allorigins.win` (para contornar CORS ao buscar o HTML do e-commerce).
+*   **Estilização**: Tailwind CSS (CDN).
+*   **IA**: SDK `@google/genai`.
+
+## Instalação e Uso Local
+
+1.  **Clone o repositório**:
+    ```bash
+    git clone https://github.com/seu-usuario/lojaoutside-parser.git
+    cd lojaoutside-parser
+    ```
+
+2.  **Instale as dependências**:
+    ```bash
+    npm install
+    ```
+
+3.  **Configure a API Key**:
+    *   Crie um arquivo `.env` na raiz do projeto (use `.env.example` como base).
+    *   Adicione sua chave do Google Gemini:
+    ```env
+    API_KEY=sua_chave_aqui_AIzaSy...
+    ```
+
+4.  **Execute o projeto**:
+    ```bash
+    npm run dev
+    ```
 
 ## Como Usar
 
-1.  **Configuração da API Key**:
-    A aplicação exige uma chave de API do Google Gemini configurada no ambiente (`process.env.API_KEY`).
+1.  Copie a URL de um produto no site da Loja Outside.
+2.  Cole no campo "URL do Produto".
+3.  Clique em "Adicionar à Lista".
+4.  Ajuste as quantidades e clique em "Imprimir Pedido".
 
-2.  **Adicionar Produtos**:
-    *   Copie a URL de um produto no site da Loja Outside.
-    *   Cole no campo "URL do Produto" na lateral esquerda.
-    *   Clique em "Adicionar à Lista".
+## Estrutura do Projeto
 
-3.  **Montar Pedido**:
-    *   O produto aparecerá na lista principal.
-    *   Verifique as variações e o estoque.
-    *   Digite a quantidade desejada para cada tamanho na coluna "Qtd Pedido".
-
-4.  **Imprimir**:
-    *   Clique no botão "Imprimir Pedido" no topo da lista.
-    *   A janela de impressão do navegador será aberta com o layout formatado.
-
-## Tratamento de Erros e Performance
-
-*   **Limpeza de HTML**: Antes de enviar para a IA, o sistema remove scripts, estilos e SVGs do HTML original. Isso reduz drasticamente o tempo de processamento e evita timeouts.
-*   **Timeouts**: Requisições de URL que demoram mais de 15 segundos são canceladas automaticamente para não travar a interface.
-
----
-*Este projeto é uma ferramenta auxiliar e depende da estrutura HTML do site alvo. Mudanças drásticas no layout do e-commerce podem afetar a precisão da extração.*
+*   `/services`: Lógica de extração e comunicação com Gemini.
+*   `/components`: Componentes visuais (Tabela, Header, Botões).
+*   `/types`: Definições de tipos TypeScript.
