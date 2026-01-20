@@ -8,6 +8,9 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, (process as any).cwd(), '');
   return {
     plugins: [react()],
+    build: {
+      outDir: 'build', // Explicitly set output directory to 'build' for Vercel
+    },
     define: {
       // Define process.env.API_KEY so it's replaced at build time (or dev time)
       // with the actual value from the environment or .env file.
